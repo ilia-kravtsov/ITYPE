@@ -11,7 +11,7 @@ export type TaskType = {
 
 function App() {
 
-    // BLL: (Здесь храним все данные, которые будем закидывать в TodoList) Данные
+    // BLL: (Здесь храним все данные, которые будем закидывать в TodoList) Данные:
 
     const todoListTitle: string = "What to learn"
     const tasksForTodoList: Array<TaskType> = [
