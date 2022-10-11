@@ -20,7 +20,7 @@ function App() {
         {id: 3, title: "REACT & TS", isDone: false},
     ]
 
-    // GUI: Интерфейс для данных выше:
+    // GUI: интерфейс для данных выше:
 
 
     return (
