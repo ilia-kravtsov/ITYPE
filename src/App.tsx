@@ -4,9 +4,9 @@ import {TodoList} from "./TodoList";
 
 
 export type TaskType = {
-    id : number,
-    title : string,
-    isDone : boolean
+    id: number,
+    title: string,
+    isDone: boolean
 }
 
 function App() {
