@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {FilterValuesType, TaskType} from "./App";
+import {log} from 'util';
 
 type TodoListPropsType = {
     title: string
@@ -27,15 +28,27 @@ export const TodoList = (props: TodoListPropsType) => {
         </ul>
         : <span>Your list is empty</span>
 
+    const onClickAddTask = () => {
+        const trimmedTitle = title.trim()
+        if(trimmedTitle) {
+            props.addTask(trimmedTitle)
+        }
+        setTitle('')
+    }
+    const onChangeSetLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+    }
+
     return (
         <div className="App">
             <div>
                 <h3>{props.title}</h3>
                 <div>
                     <input
-                        onChange={(e)=>setTitle(e.currentTarget.value)}
+                        value={title}
+                        onChange={onChangeSetLocalTitle}
                     />
-                    <button onClick={()=>props.addTask(title)}>+</button>
+                    <button onClick={onClickAddTask}>+</button>
                 </div>
                 {tasksJSXItemsList}
                 <div>
