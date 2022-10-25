@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from "./TodoList";
+import {v1} from 'uuid';
 
 
 export type TaskType = {
-    id : number,
+    id : string,
     title : string,
     isDone : boolean
 }
@@ -23,11 +24,11 @@ function App() {
     // BLL: (Здесь храним все данные, которые будем закидывать в TodoList) Данные:
     const todoListTitle: string = "What to learn"
     const [tasksForTodoList, setTasksForTodoList] = useState<Array<TaskType>>([
-        {id: 1, title: "HTML & CSS", isDone: true},
-        {id: 2, title: "JS & ES6", isDone: true},
-        {id: 3, title: "REACT & TS", isDone: false},
+        {id: v1(), title: "HTML & CSS", isDone: true},
+        {id: v1(), title: "JS & ES6", isDone: true},
+        {id: v1(), title: "REACT & TS", isDone: false},
     ])
-    const removeTask = (taskId: number) => {
+    const removeTask = (taskId: string) => {
         setTasksForTodoList (tasksForTodoList.filter(task => task.id !== taskId))
     }
 
