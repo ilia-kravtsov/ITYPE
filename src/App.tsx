@@ -31,6 +31,16 @@ function App() {
     const removeTask = (taskId: string) => {
         setTasksForTodoList (tasksForTodoList.filter(task => task.id !== taskId))
     }
+    const addTask = (title: string) => {
+        const newTask: TaskType = {
+            id: v1(),
+            title: title,
+            isDone: false
+        }
+        // const copyTasks = [...tasksForTodoList]
+        // copyTasks.push(newTask)
+        setTasksForTodoList([newTask, ...tasksForTodoList])
+    }
 
 
 
@@ -55,6 +65,7 @@ function App() {
             <TodoList
                 title={todoListTitle}
                 tasks={filteredTasks}
+                addTask={addTask}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
             />
