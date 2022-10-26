@@ -49,13 +49,19 @@ function App() {
         setFilter(filter)
     }
 
-    let filteredTasks = tasksForTodoList;
-    if (filter === 'active') {
-        filteredTasks = tasksForTodoList.filter(t => t.isDone === false)
+    const getFilteredTasks = (tasks: Array<TaskType>, filterValue: FilterValuesType) => {
+
+        let filteredTasks = tasks;
+        if (filterValue === 'active') {
+            filteredTasks = tasks.filter(t => !t.isDone)
+        }
+        if (filterValue === 'completed') {
+            filteredTasks = tasks.filter(t => t.isDone)
+        }
+        return filteredTasks
     }
-    if (filter === 'completed') {
-        filteredTasks = tasksForTodoList.filter(t => t.isDone === true)
-    }
+
+    const filteredTasks = getFilteredTasks(tasksForTodoList, filter)
 
     // GUI: интерфейс для данных выше:
 

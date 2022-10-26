@@ -39,6 +39,10 @@ export const TodoList = (props: TodoListPropsType) => {
         setTitle(e.currentTarget.value)
     }
 
+    const onChangeFilterHandlerCreator = (filter: FilterValuesType) => () => props.changeFilter(filter)
+    // const onClickChangeFilterAll = ()=> props.changeFilter('all')
+    // const onClickChangeFilterActive = ()=> props.changeFilter('active')
+    // const onClickChangeFilterCompleted = ()=> props.changeFilter('completed')
     return (
         <div className="App">
             <div>
@@ -52,11 +56,11 @@ export const TodoList = (props: TodoListPropsType) => {
                 </div>
                 {tasksJSXItemsList}
                 <div>
-                    <button onClick={()=>props.changeFilter('all')}>All</button>
-                    <button onClick={()=>props.changeFilter('active')}>Active</button>
-                    <button onClick={()=>props.changeFilter('completed')}>Completed</button>
+                    <button onClick={onChangeFilterHandlerCreator('all')}>All</button>
+                    <button onClick={onChangeFilterHandlerCreator('active')}>Active</button>
+                    <button onClick={onChangeFilterHandlerCreator('completed')}>Completed</button>
                 </div>
             </div>
         </div>
-    );
+    )
 };
