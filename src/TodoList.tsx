@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType, TaskType} from "./App";
 import {log} from 'util';
 
@@ -16,11 +16,12 @@ export const TodoList = (props: TodoListPropsType) => {
         ? <ul>
             {
                 props.tasks.map((task) => {
+                    const removeTask = () => props.removeTask(task.id)
                     return (
                         <li key={task.id}>
                             <input type="checkbox" checked={task.isDone}/>
                             <span>{task.title}</span>
-                            <button onClick={()=>props.removeTask(task.id)}>Delete</button>
+                            <button onClick={removeTask}>Delete</button>
                         </li>
                     )
                 })
@@ -38,8 +39,8 @@ export const TodoList = (props: TodoListPropsType) => {
     const onChangeSetLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
     const onChangeFilterHandlerCreator = (filter: FilterValuesType) => () => props.changeFilter(filter)
+    const onKeyDownEnterAddTask = (e: KeyboardEvent<HTMLInputElement>)=> e.key === 'Enter' && onClickAddTask()
     // const onClickChangeFilterAll = ()=> props.changeFilter('all')
     // const onClickChangeFilterActive = ()=> props.changeFilter('active')
     // const onClickChangeFilterCompleted = ()=> props.changeFilter('completed')
@@ -51,6 +52,7 @@ export const TodoList = (props: TodoListPropsType) => {
                     <input
                         value={title}
                         onChange={onChangeSetLocalTitle}
+                        onKeyDown={onKeyDownEnterAddTask}
                     />
                     <button onClick={onClickAddTask}>+</button>
                 </div>

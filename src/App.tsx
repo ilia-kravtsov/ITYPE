@@ -34,15 +34,13 @@ function App() {
     const addTask = (title: string) => {
         const newTask: TaskType = {
             id: v1(),
-            title: title,
+            title,
             isDone: false
         }
         // const copyTasks = [...tasksForTodoList]
         // copyTasks.push(newTask)
         setTasksForTodoList([newTask, ...tasksForTodoList])
     }
-
-
 
     const [filter, setFilter] = useState<FilterValuesType>('all')
     const changeFilter = (filter: FilterValuesType) => {
